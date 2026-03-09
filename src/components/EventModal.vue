@@ -24,6 +24,8 @@
       maxlength="30"
     />
 
+    <input type="color" v-model="color" class="w-full h-10 mb-3 cursor-pointer" />
+
     <div v-if="isEditMode" class="flex gap-2">
       <button @click="deleteEvent" class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
 
@@ -54,12 +56,14 @@ const store = useEventsStore()
 const isEditMode = computed(() => mode.value === 'edit')
 
 const title = ref('')
+const color = ref('#6366f1')
 
 watch(selectedEvent, (event) => {
   if (event) {
     title.value = event.title
   } else {
     title.value = ''
+    color.value = '#6366f1'
   }
 })
 
@@ -71,7 +75,7 @@ function saveEvent() {
     id: uuid(),
     title: title.value,
     start: selectedDate.value.toISOString(),
-    color: '#6366f1',
+    color: color.value,
   })
 
   closeModal()
@@ -83,6 +87,7 @@ function updateEvent() {
   store.updateEvent({
     ...selectedEvent.value,
     title: title.value,
+    color: color.value,
   })
 
   closeModal()
