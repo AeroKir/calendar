@@ -20,9 +20,11 @@ import EventModal from './EventModal.vue'
 
 import { useEventModal } from '@/composables/useEventModal'
 import { useEventsStore } from '@/stores/eventsStore'
+import { useToast } from '@/composables/useToast'
 
 const store = useEventsStore()
 const { openModal } = useEventModal()
+const { showToast } = useToast()
 
 onMounted(() => {
   store.load()
@@ -30,7 +32,24 @@ onMounted(() => {
 
 const calendarEvents = computed(() => store.events)
 
+function isPast(date: Date) {
+  const now = new Date()
+
+  const clicked = new Date(date)
+  clicked.setHours(0, 0, 0, 0)
+
+  const today = new Date(now)
+  today.setHours(0, 0, 0, 0)
+
+  return clicked < today
+}
+
 function handleDateClick(info: any) {
+  if (isPast(info.date)) {
+    showToast('Cannot create events in the past')
+    return
+  }
+
   openModal({
     date: info.date,
     mouseEvent: info.jsEvent,
@@ -55,6 +74,12 @@ function handleEventClick(info: any) {
 }
 
 function handleEventDrop(info: any) {
+  if (info.event.start < new Date()) {
+    showToast('Cannot move events to the past')
+    info.revert()
+    return
+  }
+
   store.updateEvent({
     id: info.event.id,
     title: info.event.title,
