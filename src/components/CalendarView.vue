@@ -84,7 +84,7 @@ const calendarOptions = computed(() => ({
     hour: '2-digit',
     minute: '2-digit',
     hour12: false,
-  },
+  } as const,
 
   events: calendarEvents.value,
 

@@ -93,7 +93,7 @@ const title = ref('')
 const color = ref('#6366f1')
 const date = ref<string>('')
 const startTime = ref<string>('09:00')
-const endTime = ref<string>('10:00')
+const endTime = ref<string>('')
 const error = ref('')
 
 const titleLength = computed(() => title.value.length)
@@ -101,12 +101,13 @@ const maxTitleLength = 30
 
 watch(selectedEvent, (event) => {
   if (event) {
-    title.value = event.title || ''
-    color.value = event.color || '#6366f1'
+    title.value = event.title
+    color.value = event.color
 
     const start = new Date(event.start)
 
-    date.value = start.toISOString().split('T')[0]
+    const [datePart] = start.toISOString().split('T')
+    date.value = datePart ?? ''
     startTime.value = start.toTimeString().slice(0, 5)
 
     if (event.end) {
@@ -119,7 +120,8 @@ watch(selectedEvent, (event) => {
     color.value = '#6366f1'
 
     if (selectedDate.value) {
-      date.value = selectedDate.value.toISOString().split('T')[0]
+      const [datePart] = selectedDate.value.toISOString().split('T')
+      date.value = datePart ?? ''
     }
   }
 })
