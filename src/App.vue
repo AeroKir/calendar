@@ -6,11 +6,13 @@
   </header>
 
   <RouterView />
+  <ToastContainer />
 </template>
 
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import AsideNavMenu from './components/AsideNavMenu.vue'
+import ToastContainer from './components/ToastContainer.vue'
 </script>
 
 <style scoped>
