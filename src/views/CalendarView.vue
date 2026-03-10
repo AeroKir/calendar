@@ -1,9 +1,9 @@
 <template>
   <main>
-    <CalendarView />
+    <Calendar />
   </main>
 </template>
 
 <script setup lang="ts">
-import CalendarView from '@/components/CalendarView.vue'
+import Calendar from '@/components/Calendar.vue'
 </script>
