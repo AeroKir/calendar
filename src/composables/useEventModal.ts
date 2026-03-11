@@ -16,26 +16,40 @@ const modalRef = ref<HTMLElement | null>(null)
 export function useEventModal() {
   function openModal({
     date,
-    mouseEvent,
+    element,
     modalMode = 'create',
     eventData = null,
   }: {
     date: Date
-    mouseEvent: MouseEvent
+    element: HTMLElement
     modalMode?: ModalMode
     eventData?: CalendarEvent | null
   }) {
-    const padding = 20
+    const rect = element.getBoundingClientRect()
 
-    let x = mouseEvent.pageX
-    let y = mouseEvent.pageY
+    const modalWidth = 260
+    const modalHeight = 320
+    const padding = 12
 
-    if (x + 260 > window.innerWidth) {
-      x = window.innerWidth - 260 - padding
+    let x = rect.left + 10
+    let y = rect.bottom + 6
+
+    if (x + modalWidth > window.innerWidth) {
+      x = window.innerWidth - modalWidth - padding
     }
 
-    if (y + 200 > window.innerHeight) {
-      y = window.innerHeight - 200 - padding
+    if (y + modalHeight > window.innerHeight) {
+      y = rect.top - modalHeight - 6
+    }
+
+    // left overflow
+    if (x < padding) {
+      x = padding
+    }
+
+    // top overflow
+    if (y < padding) {
+      y = rect.bottom + 6
     }
 
     position.value = { x, y }

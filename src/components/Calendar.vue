@@ -1,6 +1,6 @@
 <template>
-  <div class="p-6">
-    <h1 class="text-2xl font-bold mb-4">Calendar</h1>
+  <div class="p-6 bg-white shadow">
+    <h1 class="text-2xl font-bold !mb-6">Calendar View</h1>
 
     <FullCalendar :options="calendarOptions" />
 
@@ -20,9 +20,11 @@ import EventModal from './EventModal.vue'
 
 import { useEventModal } from '@/composables/useEventModal'
 import { useEventsStore } from '@/stores/eventsStore'
+import { useToast } from '@/composables/useToast'
 
 const store = useEventsStore()
 const { openModal } = useEventModal()
+const { showToast } = useToast()
 
 onMounted(() => {
   store.load()
@@ -30,10 +32,27 @@ onMounted(() => {
 
 const calendarEvents = computed(() => store.events)
 
+function isPast(date: Date) {
+  const now = new Date()
+
+  const clicked = new Date(date)
+  clicked.setHours(0, 0, 0, 0)
+
+  const today = new Date(now)
+  today.setHours(0, 0, 0, 0)
+
+  return clicked < today
+}
+
 function handleDateClick(info: any) {
+  if (isPast(info.date)) {
+    showToast('Cannot create events in the past')
+    return
+  }
+
   openModal({
     date: info.date,
-    mouseEvent: info.jsEvent,
+    element: info.dayEl,
     modalMode: 'create',
   })
 }
@@ -43,7 +62,7 @@ function handleEventClick(info: any) {
 
   openModal({
     date: event.start,
-    mouseEvent: info.jsEvent,
+    element: info.el,
     modalMode: 'edit',
     eventData: {
       id: event.id,
@@ -55,6 +74,12 @@ function handleEventClick(info: any) {
 }
 
 function handleEventDrop(info: any) {
+  if (info.event.start < new Date()) {
+    showToast('Cannot move events to the past')
+    info.revert()
+    return
+  }
+
   store.updateEvent({
     id: info.event.id,
     title: info.event.title,
