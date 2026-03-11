@@ -1,48 +1,73 @@
-# calendar
+# 📅 Vue Calendar Test Task
 
-This template should help get you started developing with Vue 3 in Vite.
+Simple calendar application built with **Vue 3**, **FullCalendar**, and **Pinia**.
 
-## Recommended IDE Setup
+The project allows users to create, edit, delete and move calendar events.
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## 🚀 Live Demo
 
-## Recommended Browser Setup
+https://aerokir.github.io/calendar/#/calendar
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+---
 
-## Type Support for `.vue` Imports in TS
+# ✨ Features
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+- Create events by clicking on a date
+- Edit events
+- Delete events
+- Drag & drop events
+- Prevent events in the past
+- Event color selection
+- Browser local storage to store events
+- Sidebar navigation
 
-## Customize configuration
+---
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+# 🧠 Technical Stack
 
-## Project Setup
+- Vue 3
+- Vue Router
+- Pinia
+- FullCalendar
+- TypeScript
+- Vite
 
-```sh
+---
+
+# ⚙️ Setup
+
+Install dependencies
+
+```bash
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+Run dev server
 
-```sh
+```bash
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+Build project
 
-```sh
+```bash
 npm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+---
 
-```sh
-npm run lint
+# 📦 Deployment
+
+This project can be deployed using **GitHub Pages**.
+
 ```
+npm run build
+```
+
+Then deploy the `dist` folder.
+
+---
+
+# 🧑‍💻 Author
+
+Kirill Shevtsov
