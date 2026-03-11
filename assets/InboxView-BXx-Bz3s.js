@@ -1,0 +1,1 @@
+import{_ as n,o,c as r,a as t}from"./index-CJj2dd-_.js";const a={};function s(c,e){return o(),r("div",null,[...e[0]||(e[0]=[t("h1",null,"Inbox page",-1)])])}const _=n(a,[["render",s]]);export{_ as default};

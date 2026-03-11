@@ -1,1 +1,0 @@
-import{_ as n,o as r,c as t,a as o}from"./index-DVdk7gAG.js";const a={};function s(c,e){return r(),t("main",null,[...e[0]||(e[0]=[o("h1",null,"Help Center",-1)])])}const _=n(a,[["render",s]]);export{_ as default};
