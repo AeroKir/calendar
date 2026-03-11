@@ -39,7 +39,17 @@ export function useEventModal() {
     }
 
     if (y + modalHeight > window.innerHeight) {
-      y = rect.top - modalHeight - 8
+      y = rect.top - modalHeight - 6
+    }
+
+    // left overflow
+    if (x < padding) {
+      x = padding
+    }
+
+    // top overflow
+    if (y < padding) {
+      y = rect.bottom + 6
     }
 
     position.value = { x, y }
