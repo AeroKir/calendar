@@ -1,6 +1,6 @@
 <template>
-  <div class="p-6">
-    <h1 class="text-2xl font-bold mb-4">Calendar</h1>
+  <div class="p-6 bg-white shadow">
+    <h1 class="text-2xl font-bold !mb-6">Calendar View</h1>
 
     <FullCalendar :options="calendarOptions" />
 
@@ -52,7 +52,7 @@ function handleDateClick(info: any) {
 
   openModal({
     date: info.date,
-    mouseEvent: info.jsEvent,
+    element: info.dayEl,
     modalMode: 'create',
   })
 }
@@ -62,7 +62,7 @@ function handleEventClick(info: any) {
 
   openModal({
     date: event.start,
-    mouseEvent: info.jsEvent,
+    element: info.el,
     modalMode: 'edit',
     eventData: {
       id: event.id,
