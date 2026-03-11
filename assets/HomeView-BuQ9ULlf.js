@@ -1,0 +1,1 @@
+import{_ as o,o as n,c as a,a as r}from"./index-D8QvwcP3.js";const t={};function s(c,e){return n(),a("main",null,[...e[0]||(e[0]=[r("h1",null,"Home page",-1)])])}const m=o(t,[["render",s]]);export{m as default};

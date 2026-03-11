@@ -1,1 +1,0 @@
-import{_ as t,o as n,c as s,a as o}from"./index-CJj2dd-_.js";const r={};function a(c,e){return n(),s("main",null,[...e[0]||(e[0]=[o("h1",null,"Settings",-1)])])}const i=t(r,[["render",a]]);export{i as default};
